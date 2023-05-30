@@ -3,13 +3,13 @@ package it.epicode.be.godfather.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,8 +23,8 @@ import lombok.ToString;
 @Scope("prototype")
 @PropertySource("classpath:application.properties")
 public class Ordine {
-	@Generated
-	private int NumeroOrdine;
+
+	private int NumeroOrdine = new Random().nextInt();
 	private OrdineStatus stato;
 	private int numeroCoperti;
 	private final LocalDate oraDiAcquisizione = LocalDate.now();
