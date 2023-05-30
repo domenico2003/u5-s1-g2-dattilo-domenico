@@ -1,0 +1,49 @@
+package it.epicode.be.godfather.model;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import lombok.Generated;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+@Component
+@Scope("prototype")
+@PropertySource("classpath:application.properties")
+public class Ordine {
+	@Generated
+	private int NumeroOrdine;
+	private OrdineStatus stato;
+	private int numeroCoperti;
+	private final LocalDate oraDiAcquisizione = LocalDate.now();
+	private List<ElementoOrdine> ordini = new ArrayList<>();
+
+	@Value("${GodFatherPizzaApplication.costoCoperto}")
+	private int costoCoperto;
+	private double totale = costoCoperto * numeroCoperti;
+
+	public void totale() {
+		double costOrdini = 0;
+		for (ElementoOrdine eo : this.ordini) {
+			costOrdini += eo.getOrdinazione().getPrice();
+		}
+		this.setTotale(costOrdini + (costoCoperto * numeroCoperti));
+	}
+
+	public void addOrdine(ElementoOrdine ordinazione) {
+		ordini.add(ordinazione);
+		this.totale();
+	}
+}

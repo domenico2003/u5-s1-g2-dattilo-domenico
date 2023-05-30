@@ -38,22 +38,19 @@ public class GestioneMenu {
 	public void testTopping() {
 
 		PizzaMargherita pizza = ctx.getBean(PizzaMargherita.class);
-		
-		
+
 		ToppingCheese topping1 = new ToppingCheese(pizza);
 
 		System.out.println(topping1.getName());
-		
+
 		ToppingCheese topping2 = new ToppingCheese(topping1);
 
 		System.out.println(topping2.getName());
-		
+
 		PizzaFamilySize toppingBig = new PizzaFamilySize(topping2);
 		System.out.println(toppingBig.getName());
 		System.out.println(toppingBig.getPrice());
 
-
-		
 	}
 
 }

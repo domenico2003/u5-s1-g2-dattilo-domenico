@@ -61,4 +61,10 @@ public class MenuConfig {
 	public Franchise franchiseMug() {
 		return new FranchiseMug();
 	}
+
+//	@Bean
+//	@Scope("prototype")
+//	public Ordine inizializzaOrdine() {
+//		return new Ordine();
+//	}
 }
